@@ -1,13 +1,42 @@
--- Get the local player (executor)
-local player = game:GetService("Players").LocalPlayer
+-- ✅ Mobile-Compatible Custom Ban Script
+-- Works on Delta, KRNL Mobile, Arceus X, etc.
 
--- Load the external spawner script
-loadstring(game:HttpGet("https://raw.githubusercontent.com/allaturk1234/Loading.UI/refs/heads/main/Spawner.loadXTRF"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
--- Wait 5 seconds
-task.wait(5)
+-- Remove existing GUI if already present
+pcall(function()
+    if LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("BanUI") then
+        LocalPlayer.PlayerGui.BanUI:Destroy()
+    end
+end)
 
--- Kick the executor
-if player then
-    player:Kick("You've been banned for acting sus ByeBye ENZOMARVERICK")
-end
+-- Create GUI
+local banGui = Instance.new("ScreenGui")
+banGui.Name = "BanUI"
+banGui.ResetOnSpawn = false
+banGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+-- Background frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.6, 0, 0.3, 0)
+frame.Position = UDim2.new(0.2, 0, 0.35, 0)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Parent = banGui
+
+-- Ban message text
+local text = Instance.new("TextLabel")
+text.Size = UDim2.new(1, 0, 1, 0)
+text.Position = UDim2.new(0, 0, 0, 0)
+text.BackgroundTransparency = 1
+text.Text = "❌ Hahahah ban naka Marverick\nReason: Exploiting and Cheating\n(Error Code: 234)"
+text.TextColor3 = Color3.fromRGB(255, 80, 80)
+text.Font = Enum.Font.SourceSansBold
+text.TextSize = 24
+text.TextWrapped = true
+text.Parent = frame
+
+-- Kick after delay
+task.wait(4)
+LocalPlayer:Kick("Hahahah ban naka Marverick\nReason: Exploiting and Cheating\nError Code: 234")
